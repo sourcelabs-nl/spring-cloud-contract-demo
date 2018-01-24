@@ -5,10 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Order {
 
-    private String id;
+    private final String id;
 
     @JsonCreator
-    public Order(@JsonProperty("id") String id) {
+    public Order(@JsonProperty("id") final String id) {
         this.id = id;
     }
 
