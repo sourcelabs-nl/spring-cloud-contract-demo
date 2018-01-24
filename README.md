@@ -21,8 +21,9 @@ By far the most important thing to do is defining your API's behaviour. In Sprin
 
 One way of doing this is using the Groovy Contract DSL in which you can define request-response interaction using a Groovy DSL, which is being used in this example application.
 
-Example Groovy DSL: requesting an order from the server with id=1 should return a response with at least the id fields in the json response.
+An example for the following scenario: requesting an order from the server with `id=1` should return an order containing at least an fields named `id` in the json response.
 
+Groovy file: `assertGetOrderById.groovy`:
 ```groovy
 package contracts.order
 
@@ -54,6 +55,54 @@ Contract.make {
 ```
 
 Based on this DSL we can generate unit test for verifying the real API implementation. But also (WireMock) stubs which can be used for running a stub server by consumers of you service.
+
+The generated JUnit test in `OrderTest.java` would look like this: 
+
+```java
+@Test
+public void validate_assertGetOrderById() throws Exception {
+    // given:
+        MockMvcRequestSpecification request = given()
+                .header("Accept", "application/json");
+
+    // when:
+        ResponseOptions response = given().spec(request)
+                .get("/orders/1");
+
+    // then:
+        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.header("Content-Type")).matches("application/json.*");
+    // and:
+        DocumentContext parsedJson = JsonPath.parse(response.getBody().asString());
+        assertThatJson(parsedJson).field("['id']").isEqualTo(1);
+}
+```
+
+The WireMock stub for this contract: `assertGetOrderById.json`:
+
+```json
+{
+  "id" : "a5367421-9668-4ea4-9663-40dc75d46278",
+  "request" : {
+    "url" : "/orders/1",
+    "method" : "GET",
+    "headers" : {
+      "Accept" : {
+        "matches" : "application/json.*"
+      }
+    }
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"id\":1}",
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "a5367421-9668-4ea4-9663-40dc75d46278"
+}
+```
 
 ### Building the project
 
