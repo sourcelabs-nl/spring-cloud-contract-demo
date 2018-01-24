@@ -5,7 +5,7 @@
 
     <parent>
         <groupId>nl.sourcelabs.spring.cloud.contract.demo</groupId>
-        <artifactId>consumer-driven-contracts</artifactId>
+        <artifactId>spring-cloud-contract-demo</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
