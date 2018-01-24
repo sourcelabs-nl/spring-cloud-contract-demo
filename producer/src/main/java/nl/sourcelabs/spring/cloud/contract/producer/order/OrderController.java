@@ -6,17 +6,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.xml.ws.Response;
-
 @RestController
 public class OrderController {
 
     @GetMapping(path = "/orders/{id}", produces = "application/json")
     public ResponseEntity<Order> getOrderById(@PathVariable("id") String id) {
-        if("500".equals(id)) return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-
-        if("404".equals(id)) return ResponseEntity.notFound().build();
-
-        return ResponseEntity.ok(new Order(id));
+        switch (id) {
+            case "500": return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            case "404": return ResponseEntity.notFound().build();
+            default:    return ResponseEntity.ok(new Order(id));
+        }
     }
 }
