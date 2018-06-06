@@ -1,14 +1,15 @@
 package nl.sourcelabs.spring.cloud.contract.producer.order;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Order {
 
     private final String id;
-    private final double totalPrice;
+    private final Double totalPrice;
 
     @JsonCreator
-    public Order(final String id, double totalPrice) {
+    public Order(@JsonProperty("id") String id, @JsonProperty("totalPrice") Double totalPrice) {
         this.id = id;
         this.totalPrice = totalPrice;
     }
@@ -17,7 +18,7 @@ public class Order {
         return id;
     }
 
-    public double getTotalPrice() {
+    public Double getTotalPrice() {
         return totalPrice;
     }
 
@@ -25,6 +26,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id='" + id + '\'' +
+                ", totalPrice=" + totalPrice +
                 '}';
     }
 }

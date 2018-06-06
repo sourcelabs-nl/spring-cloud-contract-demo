@@ -19,7 +19,10 @@ Contract.make {
     }
     response {
         status 200
-        body(["id" : 1])
+        body([
+                "id" : 1,
+                "totalPrice": 34.99
+        ])
         headers {
             contentType(applicationJson())
         }

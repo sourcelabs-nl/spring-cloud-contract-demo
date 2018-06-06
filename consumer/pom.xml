@@ -17,10 +17,6 @@
         <dependency>
             <groupId>nl.sourcelabs.spring.cloud.contract.demo</groupId>
             <artifactId>producer</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>nl.sourcelabs.spring.cloud.contract.demo</groupId>
-            <artifactId>producer</artifactId>
             <classifier>stubs</classifier>
         </dependency>
 
@@ -32,25 +28,17 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+
         <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jdk8</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-parameter-names</artifactId>
+            <groupId>org.webjars</groupId>
+            <artifactId>handlebars</artifactId>
+            <version>3.0.0-1</version>
         </dependency>
 
         <!-- Stub runner -->
         <dependency>
+
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-contract-stub-runner</artifactId>
         </dependency>
@@ -66,4 +54,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
 </project>

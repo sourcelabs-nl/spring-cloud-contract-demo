@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(description = "Very awesome order microservice")
+@Api(description = "Very awesome order service (producer)")
 @RestController
 public class OrderController {
 
