@@ -26,8 +26,7 @@ public class ConsumerController {
     @GetMapping(value = "/checkout", produces = MediaType.TEXT_HTML_VALUE)
     public String checkout(@RequestParam(value = "id") String id, Model model) {
         ResponseEntity<String> response = restTemplate.getForEntity("/orders/{id}", String.class, id);
-        String body = response.hasBody() && response.getStatusCode().is2xxSuccessful() ? response.getBody() : "Unexpected HTTP response, status code: " + response.getStatusCode() + " (" + response.getStatusCode().getReasonPhrase() + ")";
-        model.addAttribute("order", body);
+        model.addAttribute("order", response.getBody());
         return "checkout";
     }
 
