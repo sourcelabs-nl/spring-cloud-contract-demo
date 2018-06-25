@@ -20,6 +20,7 @@ import springfox.documentation.spring.web.plugins.Docket
 import springfox.documentation.swagger2.annotations.EnableSwagger2
 
 data class Order(val id: String)
+//data class Order(val id: String, val totalPrice: Double = 0.0)
 
 @Api(description = "Producer api for order data")
 @RestController
@@ -30,6 +31,7 @@ class OrderService {
     fun getOrderById(@PathVariable id: String): ResponseEntity<Order> = when (id) {
         "500" -> status(INTERNAL_SERVER_ERROR).build()
         "404" -> notFound().build()
+   //     "1" -> ok(Order(id = id, totalPrice = 34.99))
         else -> ok(Order(id = id))
     }
 }

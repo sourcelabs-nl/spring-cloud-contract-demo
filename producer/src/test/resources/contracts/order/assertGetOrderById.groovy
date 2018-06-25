@@ -8,7 +8,7 @@ import org.springframework.cloud.contract.spec.Contract
 Contract.make {
 
     /**
-     * Request response which succeeds, completes HTTP status code 200
+     * Request which completes with HTTP statusCode 200
      */
     request {
         method 'GET'
